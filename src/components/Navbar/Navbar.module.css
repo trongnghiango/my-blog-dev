@@ -11,11 +11,11 @@
 }
 
 .navItem {
-  @apply w-24 h-full text-gray-400 hover:text-gray-700 cursor-pointer font-medium tracking-wide text-sm flex items-start justify-center;
+  @apply w-24 h-16 text-gray-400 hover:text-gray-700 cursor-pointer font-medium tracking-wide text-sm flex items-center justify-center;
 }
 
 .selectedNavItem {
-  @apply text-gray-700 border-b-2 border-gray-700 bg-gradient-to-b from-white to-gray-100;
+  @apply text-gray-700 border-b-[4px] border-gray-700 bg-gradient-to-b from-white to-gray-100;
 }
 
 .actions {

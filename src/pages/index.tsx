@@ -114,13 +114,14 @@ export const getServerSideProps: GetServerSideProps = async () => {
   let blogs: BlogPost[] = await getBlogs()
   let tags: string[] = []
   for (const blog of blogs) {
+    console.log('tag::',blog.title, blog.tags)
     for (const tag of blog.tags) {
+      
       if (!tags.includes(tag)) {
         tags.push(tag)
       }
     }
   }
-  // console.log('tags::',tags)
   return {
     props: {
       blogData: blogs,

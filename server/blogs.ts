@@ -41,7 +41,7 @@ export async function getBlogs(): Promise<BlogPost[]> {
       const authorAvatar = author.avatarUrl;
       const tags: string[] = labels.nodes.map((tag: { name: string }) => tag.name);
   
-      // console.log({tags})
+      console.log({labels})
       const post = {
         id,
         url,

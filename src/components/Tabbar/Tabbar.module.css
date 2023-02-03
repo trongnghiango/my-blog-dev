@@ -9,7 +9,7 @@
 }
 
 .tabItemActive {
-  @apply bg-gradient-to-t from-white to-gray-100 border-t-2 border-gray-700 text-gray-700;
+  @apply h-16 bg-gradient-to-t from-white to-gray-100 border-t-[4px] border-gray-700 text-gray-700;
 }
 
 .icon {
