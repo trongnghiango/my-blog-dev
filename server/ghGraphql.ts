@@ -1,6 +1,9 @@
+const OWNER = 'trongnghiango';
+const REPO_NAME = 'my-blog-dev'
+
 export function discussionGraphql(ghDiscussionCategoryId: string | undefined) {
   return `{
-    repository(owner: "laodaits9009", name: "devblog") {
+    repository(owner: "${OWNER}", name: "${REPO_NAME}") {
       discussions(first: 100, categoryId: "${ghDiscussionCategoryId}") {
         nodes {
           title
@@ -29,7 +32,7 @@ export function discussionGraphql(ghDiscussionCategoryId: string | undefined) {
 // Single post
 export function discussionDetailGql(postId: number | undefined) {
   return `{
-    repository(owner: "laodaits9009", name: "devblog") {
+    repository(owner: "${OWNER}", name: "${REPO_NAME}") {
       discussion(number: ${postId}) {
         title
         bodyHTML

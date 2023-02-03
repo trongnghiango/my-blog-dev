@@ -20,9 +20,8 @@ export async function getBlogs(): Promise<BlogPost[]> {
     });
   
     const res = await response.json();
+    // console.log('Discussion::',res.data.repository.discussions)
     const discussions = res?.data?.repository?.discussions?.nodes
-  
-    // if (!discussions) return [];
   
     const posts = discussions.map((discussion: any): BlogPost => {
       const {
@@ -40,9 +39,9 @@ export async function getBlogs(): Promise<BlogPost[]> {
       const authorUrl = author.url;
       const authorName = author.login;
       const authorAvatar = author.avatarUrl;
-      console.log(author)
       const tags: string[] = labels.nodes.map((tag: { name: string }) => tag.name);
   
+      // console.log({tags})
       const post = {
         id,
         url,
@@ -57,6 +56,7 @@ export async function getBlogs(): Promise<BlogPost[]> {
       }
       return post;
     })
+
     return posts;
   } catch (error: any) {
     console.log("ERROR:::", error)

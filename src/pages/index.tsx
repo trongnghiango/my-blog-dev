@@ -120,7 +120,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       }
     }
   }
-  console.log(tags)
+  // console.log('tags::',tags)
   return {
     props: {
       blogData: blogs,

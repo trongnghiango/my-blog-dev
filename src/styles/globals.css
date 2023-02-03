@@ -1,5 +1,6 @@
 @import '_font.css';
-@import "github-syntax-dark/lib/github-dark.css";
+/* @import "github-syntax-dark/lib/github-dark.css"; */
+@import 'github-markdown-dark.css';
 
 @import 'tailwind/_base.css';
 @import 'tailwind/_components.css';
@@ -7,3 +8,17 @@
 
 @import '_root.css';
 @import '_custom.css';
+
+.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
