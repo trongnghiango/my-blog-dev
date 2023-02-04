@@ -5,6 +5,7 @@ import { getBlogDetail } from "server/blogs";
 import parse from 'html-react-parser';
 import Head from "next/head";
 import BlogHeader from "@/components/BlogHeader";
+import style from './id.module.css';
 
 export default function BlogPage({ blogData }: { blogData: BlogDetail }) {
 
@@ -25,7 +26,7 @@ export default function BlogPage({ blogData }: { blogData: BlogDetail }) {
         <div className="flex justify-center mb-4">
           <BlogHeader createdAt={createdAt} author={author} />
         </div>
-        <div className={`markdown-body flex flex-col px-4 bg-zinc-800 mb-12`}>{parse(bodyHTML)}</div>
+        <div className={`markdown-body ${style.cus_markdown} flex flex-col px-4 bg-zinc-800 mb-12`}>{parse(bodyHTML)}</div>
       </div>
     </section>
 
