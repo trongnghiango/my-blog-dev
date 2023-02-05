@@ -6,11 +6,20 @@ import parse from 'html-react-parser';
 import Head from "next/head";
 import BlogHeader from "@/components/BlogHeader";
 import style from './id.module.css';
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function BlogPage({ blogData }: { blogData: BlogDetail }) {
 
-  // console.log(blogData)
   const { author, title, bodyHTML, createdAt } = blogData;
+  // console.log({bodyHTML})
+  const router = useRouter();
+  console.log({router})
+  useEffect(() => {
+    // if (!!document) {
+    //   document.documentElement.style.scrollBehavior = "smooth";
+    // }
+  }, [])
   return (
     <>
       <Head>
@@ -21,12 +30,20 @@ export default function BlogPage({ blogData }: { blogData: BlogDetail }) {
       
       </Head>
       <section className="layout">
-      <div className="max-w-[60%]">
+      <div className="max-w-[720px] w-full scroll-smooth">
         <h1 className="text-center my-10 text-[2rem] font-bold"> {title} </h1>
         <div className="flex justify-center mb-4">
           <BlogHeader createdAt={createdAt} author={author} />
         </div>
-        <div className={`markdown-body ${style.cus_markdown} flex flex-col px-4 bg-zinc-800 mb-12`}>{parse(bodyHTML)}</div>
+        <div className={`
+          markdown-body 
+          ${style.cus_markdown} 
+          flex flex-col 
+          px-4 bg-zinc-800 mb-12
+        `}>
+        
+          {parse(bodyHTML)}
+        </div>
       </div>
     </section>
 

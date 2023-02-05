@@ -8,6 +8,11 @@
   display: inline-block;
 }
 
+/* .cus_markdown > {
+  scroll-behavior: smooth;
+} */
+
+
 
 .markdown-body > h1 {
   font-size: 2rem;
