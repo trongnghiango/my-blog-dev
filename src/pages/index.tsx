@@ -7,6 +7,7 @@ import { getBlogs } from 'server/blogs'
 import { BlogPost } from '@/interface/blog'
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next'
 import { useMemo, useState } from 'react'
+import { MainLayout } from '@/components/layouts/main-layout'
 
 
 const Home: NextPage = ({
@@ -33,53 +34,56 @@ const Home: NextPage = ({
   }
 
   return (
-    <main className="layout">
-      <title> Home Page </title>
-      <section>
-        <div className="mt-3 text-center">
-          <h1 className="text-[3rem]"> Welcome to DevBlog </h1>
-          <p>
-            A full-stack blog made with Next.js, TailwindCSS, Github GraphQL
-          </p>
-        </div>
-      </section>
-      <section className="flex flex-col items-center text-[1.15rem] mt-12">
-        <div className="flex gap-3 mb-12">
+    <MainLayout title='Home'>
+
+      <main className="w-screen h-full flex flex-col items-center py-16 overflow-auto">
+        <title> Home Page </title>
+        <section>
+          <div className="mt-3 text-center">
+            <h1 className="text-[3rem]"> Welcome to DevBlog </h1>
+            <p>
+              A full-stack blog made with Next.js, TailwindCSS, Github GraphQL
+            </p>
+          </div>
+        </section>
+        <section className="flex flex-col items-center text-[1.15rem] mt-12">
+          <div className="flex gap-3 mb-12">
+            {
+              tags.map((tag: string, idx: number) => {
+                return (
+                  <button
+                    className={`${selectedIdx.includes(idx)
+                      ? 'label-selected hover:bg-sky-400 transition-all duration-300'
+                      : 'label hover:bg-sky-400 transition-all duration-300'
+                      }`}
+                    key={idx}
+                    onClick={(e) => filterLabel(e.target, idx)}
+                  >
+                    {tag}
+                  </button>
+                )
+              })
+            }
+          </div>
+
+        </section>
+        <section className='blogs-container flex flex-col items-center gap-3 mt-8 mb-12'>
           {
-            tags.map((tag: string, idx: number) => {
+            filteredBlog.map((blog: BlogPost) => {
               return (
-                <button
-                  className={`${selectedIdx.includes(idx)
-                    ? 'label-selected hover:bg-sky-400 transition-all duration-300'
-                    : 'label hover:bg-sky-400 transition-all duration-300'
-                    }`}
-                  key={idx}
-                  onClick={(e) => filterLabel(e.target, idx)}
-                >
-                  {tag}
-                </button>
-              )
-            })
-          }
-        </div>
-
-      </section>
-      <section className='blogs-container flex flex-col items-center gap-3 mt-8 mb-12'>
-        {
-          filteredBlog.map((blog: BlogPost) => {
-            return (
-              <BlogCard 
-                key={blog.id} 
-                title={blog.title} 
-                bodyText={blog.bodyText} 
-                tags={blog.tags} 
-                url={blog.url} 
+                <BlogCard
+                  key={blog.id}
+                  title={blog.title}
+                  bodyText={blog.bodyText}
+                  tags={blog.tags}
+                  url={blog.url}
                 />
-            )
-          })}
+              )
+            })}
 
-      </section>
-    </main>
+        </section>
+      </main>
+    </MainLayout>
   )
 }
 export default Home
@@ -114,9 +118,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
   let blogs: BlogPost[] = await getBlogs()
   let tags: string[] = []
   for (const blog of blogs) {
-    console.log('tag::',blog.title, blog.tags)
+    console.log('tag::', blog.title, blog.tags)
     for (const tag of blog.tags) {
-      
+
       if (!tags.includes(tag)) {
         tags.push(tag)
       }

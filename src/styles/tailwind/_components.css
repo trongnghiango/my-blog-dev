@@ -2,7 +2,7 @@
 
 @layer components {
   .layout {
-    @apply w-screen h-screen overflow-auto flex flex-col items-center py-16;
+    @apply w-screen h-full flex flex-col items-center py-16;
   }
   .blogs-container {
     @apply max-w-[32em] mx-auto;
