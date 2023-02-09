@@ -13,10 +13,17 @@ import StickLayout from "@/components/layouts/stick-layout/StickLayout";
 
 export default function BlogRoute({ blogData }: { blogData: BlogDetail }) {
 
-  
+
   return (
-    <StickLayout title={blogData.title?? 'Blog Detail'}>
-      <BlogPage blogData={blogData}/>
+    <StickLayout title={blogData.title ?? 'Blog Detail'}>
+
+
+      <div className="container mx-auto relative bg-white">
+        <div className="page-title">
+          <h1>Creative Packaging Supplies &amp; Custom Shipping Supplies</h1>
+        </div>
+      </div>
+      <BlogPage blogData={blogData} />
     </StickLayout>
   );
 }

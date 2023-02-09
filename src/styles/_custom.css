@@ -1,16 +1,47 @@
-
 .card {
   width: 100%;
   min-width: 200px;
   cursor: pointer;
   background-color: #262626;
   border-radius: 8px;
-  box-shadow: 0 8px 15px rgba(125,147,178,.25);
+  box-shadow: 0 8px 15px rgba(125, 147, 178, .25);
   transition: all .3s;
   padding: 20px;
   margin-top: 32px;
 }
 
 .card:hover {
-  box-shadow: 0 20px 30px rgba(125,147,178,.15);
+  box-shadow: 0 20px 30px rgba(125, 147, 178, .15);
+}
+
+
+.page-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  padding-bottom: 0;
+  text-align: center;
+  color: #464646;
+}
+
+.page-title::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0px;
+  z-index: 10;
+  background: url(../assets/images/header_before.png) no-repeat right center;
+  width: 220px;
+}
+
+.page-title::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 0px;
+  background: url(../assets/images/header_after.png) no-repeat left center;
+  z-index: 10;
+  width: 220px;
 }
