@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function TpcHeader() {
 
@@ -8,7 +9,7 @@ export default function TpcHeader() {
         <div className="flex items-center justify-between">
           <div className="left__part">
             <h2 className="logo flex items-center px-4 py-2 gap-2">
-              <a href="/" >
+              <Link href="/" >
                 <div className="relative h-[110px] w-[200px]">
 
                   <Image src={'https://www.thepackagingcompany.com/skin/frontend/universal/mediaptive/images/tpc-logo.png'}
@@ -17,7 +18,7 @@ export default function TpcHeader() {
                     objectFit="contain"
                   />
                 </div>
-              </a>
+              </Link>
               <h3 className="text-[#666] font-medium text-sm">Your E-Commerce Partner</h3>
             </h2>
           </div>
