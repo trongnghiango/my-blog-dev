@@ -22,7 +22,7 @@ export default function TpcHeader() {
               <h3 className="text-[#666] font-medium text-sm">Your E-Commerce Partner</h3>
             </h2>
           </div>
-          <div className="right__part">
+          <div className="right__part hidden lg:block">
             <div className="flex justify-center">
               <div className="mb-3 xl:w-96">
                 <div className="input-group relative flex items-stretch w-full">
