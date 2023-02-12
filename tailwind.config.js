@@ -3,7 +3,8 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     fontFamily: {
-      poppins: ['Poppins'] //using className="font-poppins"
+      poppins: ['Poppins'], //using className="font-poppins",
+      grotesk : ["Space Grotesk"]
     },
     extend: {}
   },
