@@ -2,6 +2,6 @@
 
 @layer base {
   p {
-    @apply break-all;
+    @apply break-words;
   }
 }

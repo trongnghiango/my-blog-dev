@@ -96,7 +96,7 @@ const BlogCard: React.FC<BlogPost> = ({ id, title, bodyText, createdAt, author, 
       <div className='max-h-[30em]'>
         <h3 className='font-medium text-2xl text-[#dfa612] py-2'>👉 {' '} {title}</h3>
 
-        <p className='py-3 font-light break-words'>{previewText}</p>
+        <p className='py-3 font-light break-all'>{previewText}</p>
 
         <div className="tags flex items-center gap-2">
           {
