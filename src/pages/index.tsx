@@ -9,24 +9,24 @@ import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next'
 import { useMemo, useState } from 'react'
 import { MainLayout } from '@/components/layouts/main-layout'
 
-
 const Home: NextPage = ({
   blogData,
-  tags,
+  tags
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  console.log({ tags })
   const [filterWord, setFilterWord] = useState<string[]>([])
   const [selectedIdx, setSelectedIdx] = useState<number[]>([])
   const filteredBlog: BlogPost[] = useMemo(() => {
     return filterWord.length > 0
       ? blogData.filter((blog: BlogPost) => {
-        return filterWord.every((filter) => blog.tags.includes(filter))
-      })
+          return filterWord.every(filter => blog.tags.includes(filter))
+        })
       : blogData
   }, [filterWord])
   const filterLabel = (tag: any, idx: number) => {
     if (selectedIdx.includes(idx)) {
-      setSelectedIdx(selectedIdx.filter((id) => id !== idx))
-      setFilterWord(filterWord.filter((filter) => filter !== tag.innerText))
+      setSelectedIdx(selectedIdx.filter(id => id !== idx))
+      setFilterWord(filterWord.filter(filter => filter !== tag.innerText))
     } else {
       setSelectedIdx([...selectedIdx, idx])
       setFilterWord([...filterWord, tag.innerText])
@@ -34,8 +34,7 @@ const Home: NextPage = ({
   }
 
   return (
-    <MainLayout title='Home'>
-
+    <MainLayout title="Home">
       <main className="w-screen h-full flex flex-col items-center py-16 overflow-auto">
         <title> Home Page </title>
         <section>
@@ -48,39 +47,35 @@ const Home: NextPage = ({
         </section>
         <section className="flex flex-col items-center text-[1.15rem] mt-12">
           <div className="flex gap-3 mb-12">
-            {
-              tags.map((tag: string, idx: number) => {
-                return (
-                  <button
-                    className={`${selectedIdx.includes(idx)
+            {tags.map((tag: string, idx: number) => {
+              return (
+                <button
+                  className={`${
+                    selectedIdx.includes(idx)
                       ? 'label-selected hover:bg-sky-400 transition-all duration-300'
                       : 'label hover:bg-sky-400 transition-all duration-300'
-                      }`}
-                    key={idx}
-                    onClick={(e) => filterLabel(e.target, idx)}
-                  >
-                    {tag}
-                  </button>
-                )
-              })
-            }
-          </div>
-
-        </section>
-        <section className='blogs-container flex flex-col items-center gap-3 mt-8 mb-12'>
-          {
-            filteredBlog.map((blog: BlogPost) => {
-              return (
-                <BlogCard
-                  key={blog.id}
-                  title={blog.title}
-                  bodyText={blog.bodyText}
-                  tags={blog.tags}
-                  url={blog.url}
-                />
+                  }`}
+                  key={idx}
+                  onClick={e => filterLabel(e.target, idx)}
+                >
+                  {tag}
+                </button>
               )
             })}
-
+          </div>
+        </section>
+        <section className="blogs-container flex flex-col items-center gap-3 mt-8 mb-12">
+          {filteredBlog.map((blog: BlogPost) => {
+            return (
+              <BlogCard
+                key={blog.id}
+                title={blog.title}
+                bodyText={blog.bodyText}
+                tags={blog.tags}
+                url={blog.url}
+              />
+            )
+          })}
         </section>
       </main>
     </MainLayout>
@@ -88,30 +83,39 @@ const Home: NextPage = ({
 }
 export default Home
 
-const BlogCard: React.FC<BlogPost> = ({ id, title, bodyText, createdAt, author, tags, url }) => {
-
+const BlogCard: React.FC<BlogPost> = ({
+  id,
+  title,
+  bodyText,
+  createdAt,
+  author,
+  tags,
+  url
+}) => {
   const previewText = bodyText?.substring(0, 150) + ' ...'
   return (
-    <a href={url} target="_blank" rel="noreferrer" className='card px-4 py-2'>
-      <div className='max-h-[30em]'>
-        <h3 className='font-medium text-2xl text-[#dfa612] py-2'>👉 {' '} {title}</h3>
+    <a href={url} target="_blank" rel="noreferrer" className="card px-4 py-2">
+      <div className="max-h-[30em]">
+        <h3 className="font-medium text-2xl text-[#dfa612] py-2">👉 {title}</h3>
 
-        <p className='py-3 font-light break-all'>{previewText}</p>
+        <p className="py-3 font-light break-all">{previewText}</p>
 
         <div className="tags flex items-center gap-2">
-          {
-            !!tags && tags.map((tag: string, index: number) => {
+          {!!tags &&
+            tags.map((tag: string, index: number) => {
               return (
-                <span key={index} className="tag text-sm border rounded-full py-1 px-2">
+                <span
+                  key={index}
+                  className="tag text-sm border rounded-full py-1 px-2"
+                >
                   {tag}
                 </span>
-              );
-            })
-          }
+              )
+            })}
         </div>
       </div>
     </a>
-  );
+  )
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -120,7 +124,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
   for (const blog of blogs) {
     console.log('tag::', blog.title, blog.tags)
     for (const tag of blog.tags) {
-
       if (!tags.includes(tag)) {
         tags.push(tag)
       }
@@ -129,7 +132,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {
       blogData: blogs,
-      tags: tags,
-    },
+      tags: tags
+    }
   }
 }
