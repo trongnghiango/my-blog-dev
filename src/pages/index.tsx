@@ -94,7 +94,12 @@ const BlogCard: React.FC<BlogPost> = ({
 }) => {
   const previewText = bodyText?.substring(0, 150) + ' ...'
   return (
-    <a href={url} target="_blank" rel="noreferrer" className="card px-4 py-2">
+    <a
+      href={url}
+      // target="_blank"
+      rel="noreferrer"
+      className="card px-4 py-2"
+    >
       <div className="max-h-[30em]">
         <h3 className="font-medium text-2xl text-[#dfa612] py-2">👉 {title}</h3>
 
