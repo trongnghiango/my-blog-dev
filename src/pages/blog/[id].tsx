@@ -15,16 +15,16 @@ export default function BlogRoute({ blogData }: { blogData: BlogDetail }) {
 
 
   return (
-    <StickLayout title={blogData.title ?? 'Blog Detail'}>
+    <MainLayout title={blogData.title ?? 'Blog Detail'}>
 
 
-      <div className="container mx-auto relative bg-white">
+      {/* <div className="container mx-auto relative bg-white">
         <div className="page-title">
           <h1>Creative Packaging Supplies &amp; Custom Shipping Supplies</h1>
         </div>
-      </div>
+      </div> */}
       <BlogPage blogData={blogData} />
-    </StickLayout>
+    </MainLayout>
   );
 }
 

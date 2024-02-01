@@ -24,7 +24,6 @@ export default function StickLayout({ title, children }: IProps) {
        px-4 py-2 shadow-2xl `}
         >
           <div className="flex items-center">
-            {/* navbar */}
 
           </div>
         </header>
